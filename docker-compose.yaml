@@ -9,6 +9,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
       - mongo-data:/data/db
+      - timezone:/etc/timezone:ro
   mongo-express:
     image: mongo-express
     ports:
@@ -21,4 +22,6 @@ services:
       - mongodb
 volumes:
   mongo-data:
+    driver: local
+  timezone:
     driver: local
