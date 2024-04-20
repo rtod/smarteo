@@ -1,29 +1,21 @@
-version: '3'
+version: '3.8'
 services:
-  mongodb:
-    image: mongo
-    ports:
-      - 27017:27017
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password
+      - POSTGRES_USER=smarteoadmin
+      - POSTGRES_PASSWORD=smarteosecret
+      - POSTGRES_db=smarteodb
+    ports:
+      - '5432:5432'
     volumes:
-      - mongo-data:/data/db
-      - mongo-config:/data/configdb
-  mongo-express:
-    image: mongo-express
+      - postgresdb:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-      - ME_CONFIG_MONGODB_SERVER=mongodb
-    depends_on:
-      - mongodb
+      - '8081:8081'
 volumes:
-  mongo-data:
+  postgresdb:
     driver: local
-  mongo-config:
-    driver: local
-
-#forget about mongo and do postgresql
