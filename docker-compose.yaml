@@ -6,7 +6,7 @@ services:
     environment:
       - POSTGRES_USER=smarteoadmin
       - POSTGRES_PASSWORD=smarteosecret
-      - POSTGRES_db=smarteodb
+      - POSTGRES_DB=smarteodb
     ports:
       - '5432:5432'
     volumes:
