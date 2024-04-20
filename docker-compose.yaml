@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       - POSTGRES_USER=smarteoadmin
-      - POSTGRES_PASSWORD=smarteosecret
+      - POSTGRES_PASSWORD=password
       - POSTGRES_DB=smarteodb
     ports:
       - '5432:5432'
