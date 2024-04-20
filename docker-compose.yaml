@@ -25,3 +25,5 @@ volumes:
     driver: local
   mongo-config:
     driver: local
+
+#forget about mongo and do postgresql
