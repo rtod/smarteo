@@ -1,12 +1,4 @@
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Docker Compose reference guide at
-# https://docs.docker.com/go/compose-spec-reference/
-
-# Here the instructions define your application as a service called "server".
-# This service is built from the Dockerfile in the current directory.
-# You can add other services your application may depend on here, such as a
-# database or a cache. For examples, see the Awesome Compose repository:
-# https://github.com/docker/awesome-compose
+version: '3.8'
 services:
   postgres:
     image: postgres:14.1-alpine
@@ -19,16 +11,16 @@ services:
       - '5432:5432'
     volumes:
       - postgresdb:/var/lib/postgresql/data
-    adminer:
-      image: adminer
-      restart: always
-      ports:
-        - '8080:8080'
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
   server:
     build:
       context: .
     ports:
       - '8081:8081'
-  volumes:
-    postgresdb:
-      driver: local
+volumes:
+  postgresdb:
+    driver: local
