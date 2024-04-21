@@ -21,8 +21,8 @@ public class SmarteoService {
         return entryEntity;
     }
 
-    public EntryEntity findByName(String name) {
-        return entryRepository.findByName(name);
+    public EntryEntity findByEmail(String email) {
+        return entryRepository.findByEmail(email);
     }
 
     public List<EntryEntity> findAll() {
@@ -39,16 +39,15 @@ public class SmarteoService {
         return entryEntities;
     }
 
-    public List<EntryEntity> deleteById(long id) {
-        EntryEntity entryEntity = entryRepository.findById(id);
-        entryRepository.deleteById(id);
+    public List<EntryEntity> deleteByEmail(String email) {
+        EntryEntity entryEntity = entryRepository.findByEmail(email);
+        entryRepository.deleteByEmail(email);
         return Collections.singletonList(entryEntity);
     }
 
-    public List<EntryEntity> updateById(long id, Entry entry) {
-        EntryEntity entryEntity = entryRepository.findById(id);
+    public List<EntryEntity> updateByEmail(String email, Entry entry) {
+        EntryEntity entryEntity = entryRepository.findByEmail(email);
         entryEntity.setName(entry.getName());
-        entryEntity.setEmail(entry.getEmail());
         entryRepository.save(entryEntity);
         return Collections.singletonList(entryEntity);
     }

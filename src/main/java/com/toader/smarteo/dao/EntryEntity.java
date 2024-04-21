@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EntryEntity {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String name;
+    @Id
+    @Column(length = 200)
     private String email;
+    private String name;
 }

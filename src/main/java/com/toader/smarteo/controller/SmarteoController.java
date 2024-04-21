@@ -27,8 +27,8 @@ public class SmarteoController {
     }
 
     @GetMapping("/getEntry")
-    public SmarteoResponse getEntry(@RequestParam String name) {
-        EntryEntity entryEntity = smarteoService.findByName(name);
+    public SmarteoResponse getEntry(@RequestParam String email) {
+        EntryEntity entryEntity = smarteoService.findByEmail(email);
         return SmarteoResponse.builder().entries(Collections.singletonList(entryEntity)).returnMessage("Entry retrieved successfully!").build();
     }
 
@@ -38,12 +38,12 @@ public class SmarteoController {
     }
 
     @DeleteMapping("/deleteEntry")
-    public SmarteoResponse deleteEntry(@RequestParam long id) {
-        return SmarteoResponse.builder().entries(smarteoService.deleteById(id)).returnMessage("Entry deleted successfully!").build();
+    public SmarteoResponse deleteEntry(@RequestParam String email) {
+        return SmarteoResponse.builder().entries(smarteoService.deleteByEmail(email)).returnMessage("Entry deleted successfully!").build();
     }
 
     @PutMapping("/updateEntry")
-    public SmarteoResponse updateEntry(@RequestParam long id, @RequestBody Entry entry) {
-        return SmarteoResponse.builder().entries(smarteoService.updateById(id, entry)).returnMessage("Entry updated successfully!").build();
+    public SmarteoResponse updateEntry(@RequestParam String email, @RequestBody Entry entry) {
+        return SmarteoResponse.builder().entries(smarteoService.updateByEmail(email, entry)).returnMessage("Entry updated successfully!").build();
     }
 }

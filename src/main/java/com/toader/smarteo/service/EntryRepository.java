@@ -8,13 +8,11 @@ import java.util.List;
 
 @Repository
 public interface EntryRepository extends JpaRepository<EntryEntity, Long> {
-    EntryEntity findByName(String entryName);
-
-    EntryEntity findById(long entryId);
+    EntryEntity findByEmail(String entryEmail);
 
     EntryEntity save(EntryEntity entryEntity);
 
     List<EntryEntity> findAll();
 
-    void deleteById(long entryId);
+    void deleteByEmail(String entryEmail);
 }
