@@ -1,6 +1,6 @@
 package com.toader.smarteo.service;
 
-import com.toader.smarteo.bean.Entry;
+import com.toader.smarteo.dto.Entry;
 import com.toader.smarteo.dao.EntryEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

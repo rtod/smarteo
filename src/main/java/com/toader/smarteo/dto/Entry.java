@@ -1,4 +1,4 @@
-package com.toader.smarteo.bean;
+package com.toader.smarteo.dto;
 
 import lombok.Data;
 

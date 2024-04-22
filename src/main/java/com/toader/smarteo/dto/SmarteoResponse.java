@@ -1,4 +1,4 @@
-package com.toader.smarteo.bean;
+package com.toader.smarteo.dto;
 
 import com.toader.smarteo.dao.EntryEntity;
 import lombok.AllArgsConstructor;

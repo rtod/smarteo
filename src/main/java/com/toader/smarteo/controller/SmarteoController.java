@@ -1,7 +1,7 @@
 package com.toader.smarteo.controller;
 
-import com.toader.smarteo.bean.Entry;
-import com.toader.smarteo.bean.SmarteoResponse;
+import com.toader.smarteo.dto.Entry;
+import com.toader.smarteo.dto.SmarteoResponse;
 import com.toader.smarteo.dao.EntryEntity;
 import com.toader.smarteo.service.SmarteoService;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/v1/smarteo/api")
 @AllArgsConstructor
 public class SmarteoController {
 
@@ -23,6 +24,7 @@ public class SmarteoController {
 
     @PostMapping("/addEntries")
     public SmarteoResponse addEntries(@RequestBody List<Entry> entries) {
+        //TODO: check if entry exists
         return SmarteoResponse.builder().entries(smarteoService.saveAll(entries)).returnMessage("You have successfully added an entry!").build();
     }
 
