@@ -11,44 +11,44 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class SmarteoService {
+public class SmarteoEntryRepositoryImpl {
 
-    private EntryRepository entryRepository;
+    private SmarteoEntryRepository smarteoEntryRepository;
 
     public EntryEntity save(Entry entry) {
         EntryEntity entryEntity = EntryEntity.builder().name(entry.getName()).email(entry.getEmail()).build();
-        entryRepository.save(entryEntity);
+        smarteoEntryRepository.save(entryEntity);
         return entryEntity;
     }
 
     public EntryEntity findByEmail(String email) {
-        return entryRepository.findByEmail(email);
+        return smarteoEntryRepository.findByEmail(email);
     }
 
     public List<EntryEntity> findAll() {
-        return entryRepository.findAll();
+        return smarteoEntryRepository.findAll();
     }
 
     public List<EntryEntity> saveAll(List<Entry> entries) {
         List<EntryEntity> entryEntities = new ArrayList<>();
         for (Entry entry : entries) {
             EntryEntity entryEntity = EntryEntity.builder().name(entry.getName()).email(entry.getEmail()).build();
-            entryRepository.save(entryEntity);
+            smarteoEntryRepository.save(entryEntity);
             entryEntities.add(entryEntity);
         }
         return entryEntities;
     }
 
     public List<EntryEntity> deleteByEmail(String email) {
-        EntryEntity entryEntity = entryRepository.findByEmail(email);
-        entryRepository.deleteByEmail(email);
+        EntryEntity entryEntity = smarteoEntryRepository.findByEmail(email);
+        smarteoEntryRepository.deleteByEmail(email);
         return Collections.singletonList(entryEntity);
     }
 
     public List<EntryEntity> updateByEmail(String email, Entry entry) {
-        EntryEntity entryEntity = entryRepository.findByEmail(email);
+        EntryEntity entryEntity = smarteoEntryRepository.findByEmail(email);
         entryEntity.setName(entry.getName());
-        entryRepository.save(entryEntity);
+        smarteoEntryRepository.save(entryEntity);
         return Collections.singletonList(entryEntity);
     }
 }

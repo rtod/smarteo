@@ -3,7 +3,7 @@ package com.toader.smarteo.controller;
 import com.toader.smarteo.dto.Entry;
 import com.toader.smarteo.dto.SmarteoResponse;
 import com.toader.smarteo.dao.EntryEntity;
-import com.toader.smarteo.service.SmarteoService;
+import com.toader.smarteo.service.SmarteoEntryRepositoryImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,37 +15,37 @@ import java.util.List;
 @AllArgsConstructor
 public class SmarteoController {
 
-    private SmarteoService smarteoService;
+    private SmarteoEntryRepositoryImpl smarteoEntryRepositoryImpl;
 
     @PostMapping("/addEntry")
     public SmarteoResponse addEntry(@RequestBody Entry entry) {
-        return SmarteoResponse.builder().entries(Collections.singletonList(smarteoService.save(entry))).returnMessage("You have successfully added an entry!").build();
+        return SmarteoResponse.builder().entries(Collections.singletonList(smarteoEntryRepositoryImpl.save(entry))).returnMessage("You have successfully added an entry!").build();
     }
 
     @PostMapping("/addEntries")
     public SmarteoResponse addEntries(@RequestBody List<Entry> entries) {
         //TODO: check if entry exists
-        return SmarteoResponse.builder().entries(smarteoService.saveAll(entries)).returnMessage("You have successfully added an entry!").build();
+        return SmarteoResponse.builder().entries(smarteoEntryRepositoryImpl.saveAll(entries)).returnMessage("You have successfully added an entry!").build();
     }
 
     @GetMapping("/getEntry")
     public SmarteoResponse getEntry(@RequestParam String email) {
-        EntryEntity entryEntity = smarteoService.findByEmail(email);
+        EntryEntity entryEntity = smarteoEntryRepositoryImpl.findByEmail(email);
         return SmarteoResponse.builder().entries(Collections.singletonList(entryEntity)).returnMessage("Entry retrieved successfully!").build();
     }
 
     @GetMapping("/getEntries")
     public SmarteoResponse getEntries() {
-        return SmarteoResponse.builder().entries(smarteoService.findAll()).returnMessage("Entries retrieved successfully!").build();
+        return SmarteoResponse.builder().entries(smarteoEntryRepositoryImpl.findAll()).returnMessage("Entries retrieved successfully!").build();
     }
 
     @DeleteMapping("/deleteEntry")
     public SmarteoResponse deleteEntry(@RequestParam String email) {
-        return SmarteoResponse.builder().entries(smarteoService.deleteByEmail(email)).returnMessage("Entry deleted successfully!").build();
+        return SmarteoResponse.builder().entries(smarteoEntryRepositoryImpl.deleteByEmail(email)).returnMessage("Entry deleted successfully!").build();
     }
 
     @PutMapping("/updateEntry")
     public SmarteoResponse updateEntry(@RequestParam String email, @RequestBody Entry entry) {
-        return SmarteoResponse.builder().entries(smarteoService.updateByEmail(email, entry)).returnMessage("Entry updated successfully!").build();
+        return SmarteoResponse.builder().entries(smarteoEntryRepositoryImpl.updateByEmail(email, entry)).returnMessage("Entry updated successfully!").build();
     }
 }
