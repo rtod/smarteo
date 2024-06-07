@@ -1,4 +1,4 @@
-package com.toader.smarteo.dao;
+package com.toader.smarteo.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @Data
-@Table(name = "entries")
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-public class EntryEntity {
+public class User {
     @Id
     @Column(length = 200)
     private String email;

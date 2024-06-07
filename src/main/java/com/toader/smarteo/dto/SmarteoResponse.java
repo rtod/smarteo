@@ -1,6 +1,6 @@
 package com.toader.smarteo.dto;
 
-import com.toader.smarteo.dao.EntryEntity;
+import com.toader.smarteo.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +11,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class SmarteoResponse {
-    private List<EntryEntity> entries;
+    private List<User> users;
     private String returnMessage;
 }
